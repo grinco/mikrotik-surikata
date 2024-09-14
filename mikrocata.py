@@ -42,10 +42,9 @@ SEVERITY=("1","2")
 
 ################# END EDIT SETTINGS
 # ------------------------------------------------------------------------------
-LISTEN_INTERFACE=("tzsp0")
 
 # Suricata log file
-SELKS_CONTAINER_DATA_SURICATA_LOG="/root/SELKS/docker/containers-data/suricata/logs/"
+SELKS_CONTAINER_DATA_SURICATA_LOG="/opt/trafr/log/"
 FILEPATH = os.path.abspath(SELKS_CONTAINER_DATA_SURICATA_LOG + "eve.json")
 
 # Save Mikrotik address lists to a file and reload them on Mikrotik reboot.
@@ -148,9 +147,6 @@ def add_to_tik(alerts):
 
         if str(event["alert"]["severity"]) not in SEVERITY:
             print("pass severity: " + str(event["alert"]["severity"]))
-            break
-
-        if str(event["in_iface"]) not in LISTEN_INTERFACE:
             break
 
         if not in_ignore_list(ignore_list, event):
@@ -277,7 +273,7 @@ def connect_to_tik():
     global api
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
-    ctx.set_ciphers('ADH:@SECLEVEL=0')
+    ctx.verify_mode = ssl.CERT_NONE
 
     while True:
         try:
