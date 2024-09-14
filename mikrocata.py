@@ -42,23 +42,22 @@ SEVERITY=("1","2")
 
 ################# END EDIT SETTINGS
 # ------------------------------------------------------------------------------
-
 # Suricata log file
-SELKS_CONTAINER_DATA_SURICATA_LOG="/opt/trafr/log/"
-FILEPATH = os.path.abspath(SELKS_CONTAINER_DATA_SURICATA_LOG + "eve.json")
+TRAFR_CONTAINER_DATA_SURICATA_LOG="/opt/trafr/log/"
+FILEPATH = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "eve.json")
 
 # Save Mikrotik address lists to a file and reload them on Mikrotik reboot.
 # You can add additional list(s), e.g. [BLOCK_LIST_NAME, "blocklist1", "list2"]
 SAVE_LISTS = [BLOCK_LIST_NAME]
 
 # (!) Make sure you have privileges (!)
-SAVE_LISTS_LOCATION = os.path.abspath("/var/lib/mikrocata/savelists-tzsp0.json")
-SAVE_LISTS_LOCATION_V6 = os.path.abspath("/var/lib/mikrocata/savelists-tzsp0_v6.json")
+SAVE_LISTS_LOCATION = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/savelists.json")
+SAVE_LISTS_LOCATION_V6 = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/savelists_v6.json")
 # Location for Mikrotik's uptime. (needed for re-adding lists after reboot)
-UPTIME_BOOKMARK = os.path.abspath("/var/lib/mikrocata/uptime-tzsp0.bookmark")
+UPTIME_BOOKMARK = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/uptime.bookmark")
 
 # Ignored rules file location - check ignore.conf for syntax.
-IGNORE_LIST_LOCATION = os.path.abspath("/var/lib/mikrocata/ignore-tzsp0.conf")
+IGNORE_LIST_LOCATION = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/ignore.conf")
 
 # Add all alerts from alerts.json on start?
 # Setting this to True will start reading alerts.json from beginning
