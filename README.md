@@ -1,4 +1,4 @@
-## 📡 Mikrotik Setup
+## Mikrotik Setup
 
 1. Enable sniffer:
     ```sh
@@ -28,3 +28,8 @@ See here: https://github.com/grinco/trafr-suricata
 docker run -d --volumes-from trafr -e ROUTER_IP='192.168.2.1' -e USERNAME='randomuser' -e PASSWORD='randompassword' grinco/mikrotik-surikata
 ```
 Don't forget to change the IP address, and replace "randomuser" and "randompassword" with actual values.
+
+## Credits
+[zzbe/mikrocata](https://github.com/zzbe/mikrocata)
+
+[angolo40/mikrocata2selks](https://github.com/angolo40/mikrocata2selks)
