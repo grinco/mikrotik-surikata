@@ -18,17 +18,17 @@ import requests
 ################# START EDIT SETTINGS
 
 #Set Mikrotik login information
-USERNAME = "mikrocata2selks"
-PASSWORD = "password"
-ROUTER_IP = "192.168.0.1"
-TIMEOUT = "1d"
-PORT = 8729  # api-ssl port
-BLOCK_LIST_NAME = "Suricata"
+USERNAME = os.environ['USERNAME']
+PASSWORD = os.environ['PASSWORD']
+ROUTER_IP = os.environ['ROUTER_IP']
+TIMEOUT = os.environ["TTL"]
+PORT = os.environ['ROUTER_PORT']  # api-ssl port
+BLOCK_LIST_NAME = os.environ['ADDRESS_LIST']
 
 #Set Telegram information
-enable_telegram = False
-TELEGRAM_TOKEN = "TOKEN"
-TELEGRAM_CHATID = "CHATID"
+enable_telegram = os.environ['ENABLE_TELEGRAM'] 
+TELEGRAM_TOKEN = os.environ['TOKEN']
+TELEGRAM_CHATID = os.environ['CHATID']
 
 # You can add your WAN IP, so it doesn't get mistakenly blocked (don't leave empty string)
 WAN_IP = "yourpublicip"
@@ -43,21 +43,21 @@ SEVERITY=("1","2")
 ################# END EDIT SETTINGS
 # ------------------------------------------------------------------------------
 # Suricata log file
-TRAFR_CONTAINER_DATA_SURICATA_LOG="/opt/trafr/log/"
-FILEPATH = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "eve.json")
+LOGDIR="/var/log/suricata/"
+FILEPATH = os.path.abspath(LOGDIR + "eve.json")
 
 # Save Mikrotik address lists to a file and reload them on Mikrotik reboot.
 # You can add additional list(s), e.g. [BLOCK_LIST_NAME, "blocklist1", "list2"]
 SAVE_LISTS = [BLOCK_LIST_NAME]
 
 # (!) Make sure you have privileges (!)
-SAVE_LISTS_LOCATION = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/savelists.json")
-SAVE_LISTS_LOCATION_V6 = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/savelists_v6.json")
+SAVE_LISTS_LOCATION = os.path.abspath(LOGDIR + "/savelists.json")
+SAVE_LISTS_LOCATION_V6 = os.path.abspath(LOGDIR + "/savelists_v6.json")
 # Location for Mikrotik's uptime. (needed for re-adding lists after reboot)
-UPTIME_BOOKMARK = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/uptime.bookmark")
+UPTIME_BOOKMARK = os.path.abspath(LOGDIR + "/uptime.bookmark")
 
 # Ignored rules file location - check ignore.conf for syntax.
-IGNORE_LIST_LOCATION = os.path.abspath(TRAFR_CONTAINER_DATA_SURICATA_LOG + "/ignore.conf")
+IGNORE_LIST_LOCATION = os.path.abspath(LOGDIR + "/ignore.conf")
 
 # Add all alerts from alerts.json on start?
 # Setting this to True will start reading alerts.json from beginning
